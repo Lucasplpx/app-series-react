@@ -3,17 +3,17 @@ import { Table, Alert } from 'reactstrap'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
-const Generos = () => {
+const Series = () => {
   const [data, setData] = useState([])
 
   useEffect(()=>{
-    axios.get('/api/genres').then(res => {
+    axios.get('/api/series').then(res => {
      setData(res.data.data)
     })
   }, [])
 
-  const deleteGenero = async (id) => {
-    await axios.delete('/api/genres/'+id)
+  const deleteSerie = async (id) => {
+    await axios.delete('/api/series/'+id)
     const filtrado = data.filter(item => item.id !== id)
     setData(filtrado)
   }
@@ -24,8 +24,8 @@ const Generos = () => {
         <th scope="row">{record.id}</th>
         <td>{record.name}</td>
         <td>
-          <button className='btn btn-danger' onClick={() => deleteGenero(record.id)}>Excluir</button>
-          <Link to={'/generos/'+record.id} className='btn btn-warning'>Editar</Link>
+          <button className='btn btn-danger' onClick={() => deleteSerie(record.id)}>Excluir</button>
+          <Link to={'/series/'+record.id} className='btn btn-warning'>Info</Link>
         </td>
       </tr>      
     )
@@ -34,10 +34,10 @@ const Generos = () => {
   if(data.length === 0){
     return(
       <div className='container'>
-        <h1>Generos</h1>       
-        <Alert color="warning">
-        <Link to='/generos/novo' className='btn btn-primary'>Novo genêro</Link>
-          Você não possui generos criados.
+        <h1>Séries</h1>    
+        <Link to='/series/nova' className='btn btn-primary'>Nova série</Link>   
+        <Alert color="warning">          
+          Você não possui séries criadas.
         </Alert>
       </div>
     )
@@ -46,8 +46,8 @@ const Generos = () => {
 
   return (
     <div className='container'>
-      <h1>Generos</h1>     
-      <Link to='/generos/novo' className='btn btn-primary'>Novo genêro</Link>
+      <h1>Séries</h1>     
+      <Link to='/series/nova' className='btn btn-primary'>Nova série</Link>
 
       <Table dark>
         <thead>
@@ -66,4 +66,4 @@ const Generos = () => {
 
 }
 
-export default Generos
+export default Series

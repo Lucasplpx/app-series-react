@@ -11,15 +11,20 @@ const Header = () => {
 
   return (
   <Navbar color='light' light expand='md'>
+    <div className='container'>
     <NavbarBrand tag={Link} to='/'>Minhas Séries</NavbarBrand>
     <NavbarToggler onClick={toggle} />
       <Collapse isOpen={open} navbar>
         <Nav className='ml-auto' navbar>
           <NavItem>
+            <NavLink onClick={toggle} tag={Link} to='/series'>Séries</NavLink>
+          </NavItem>
+          <NavItem>
             <NavLink onClick={toggle} tag={Link} to='/generos'>Generos</NavLink>
           </NavItem>
         </Nav>
-      </Collapse>        
+      </Collapse>     
+      </div>   
   </Navbar>
   )
 }
